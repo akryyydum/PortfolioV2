@@ -1,4 +1,4 @@
-// import Lance from '../assets/Lance.png'
+import Lance from '../assets/Lance.png'
 
 function Profile() {
   return (
@@ -11,7 +11,7 @@ function Profile() {
                 </div>
                 
             <div className=''>
-                {/* <img src={Lance} alt="Lance" className="w-128 aspect-square rounded-4xl mt-4 object-cover p-4" /> */}
+                <img src={Lance} alt="Lance" className="w-128 aspect-square rounded-4xl mt-4 object-cover p-4" /> 
             </div>
             </div>
         </div>
