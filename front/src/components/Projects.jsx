@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
 
-/* ─────────────────────────────────────────────
-   Glassmorphism card — dev projects
-───────────────────────────────────────────── */
 const GlassCard = ({ gradient, label, icon }) => (
   <div
     style={{
@@ -21,57 +18,51 @@ const GlassCard = ({ gradient, label, icon }) => (
     </span>
   </div>
 );
-
-/* ─────────────────────────────────────────────
-   Poster grid — design showcase
-   Replace placeholder gradients with your
-   actual <img> tags once you have the assets.
-───────────────────────────────────────────── */
 const posterData = [
   {
     id: 1,
-    title: "Poster Title One",
-    category: "Event Design",
+    title: "Curry Poster",
+    category: "Personal Project",
     gradient: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
     accent: "rgba(99,102,241,0.9)",
     src: "https://res.cloudinary.com/dzlwcbxs0/image/upload/v1777398790/CURRY_ifwh5n.png",
   },
   {
     id: 2,
-    title: "Poster Title Two",
-    category: "Brand Identity",
+    title: "Lisa Poster",
+    category: "Commission",
     gradient: "linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 50%, #2d1b69 100%)",
     accent: "rgba(139,92,246,0.9)",
     src:"https://res.cloudinary.com/dzlwcbxs0/image/upload/v1777398787/LISA_POSTER_uksnsi.png",
   },
   {
     id: 3,
-    title: "Poster Title Three",
-    category: "Social Media",
+    title: "Go Youn-Jung Poster",
+    category: "Commission",
     gradient: "linear-gradient(135deg, #0a1628 0%, #0d2137 50%, #0f3d5c 100%)",
     accent: "rgba(6,182,212,0.9)",
     src: "https://res.cloudinary.com/dzlwcbxs0/image/upload/v1777398785/goy_xphlf5.png",
   },
   {
     id: 4,
-    title: "Poster Title Four",
-    category: "Print Design",
+    title: "Evangelion Poster",
+    category: "Personal Project",
     gradient: "linear-gradient(135deg, #1a0a14 0%, #2d1022 50%, #4a1535 100%)",
     accent: "rgba(236,72,153,0.9)",
     src: "https://res.cloudinary.com/dzlwcbxs0/image/upload/v1777398783/eva_t8ltb6.png",
   },
   {
     id: 5,
-    title: "Poster Title Five",
-    category: "Typography",
+    title: "LeBron X Jordan",
+    category: "Personal Project",
     gradient: "linear-gradient(135deg, #0a1a0a 0%, #0d2b0d 50%, #0f4a1a 100%)",
     accent: "rgba(16,185,129,0.9)",
     src: "https://res.cloudinary.com/dzlwcbxs0/image/upload/v1777398783/Untitled-3_2x_dftkjg.png",
   },
   {
     id: 6,
-    title: "Poster Title Six",
-    category: "Campaign",
+    title: "New Jeans Poster",
+    category: "Commission",
     gradient: "linear-gradient(135deg, #1a1000 0%, #2b1d00 50%, #4a3200 100%)",
     accent: "rgba(245,158,11,0.9)",
     src: "https://res.cloudinary.com/dzlwcbxs0/image/upload/v1777398783/NWJNS_gdaq6f.png",
