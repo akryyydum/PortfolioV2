@@ -10,31 +10,29 @@ function AboutMe() {
                 <div className="flex justify-center items-center w-full p-4">
                     <span className="text-md">I'm an aspiring front-end developer from Saint Mary's University taking an Information Technology degree. I have a passion for creating visually appealing and user-friendly websites and applications. I enjoy learning new technologies and staying up-to-date with the latest trends in web development.</span>
                 </div>
-                <div className="flex w-full flex-wrap justify-center gap-4">
+                <div className="grid grid-cols-3 w-full gap-4">
                     <CardFlip
                         title="Programming Languages"
                         subtitle="What I use most"
-                        description="Languages I’m comfortable with"
+                        description="Languages I'm comfortable with"
                         features={["JavaScript", "HTML", "CSS", "Python", "Java", "C++", "SQL"]}
-                        />
-                        <CardFlip
+                    />
+                    <CardFlip
                         title="Frameworks / Libraries"
                         subtitle="What I use most"
-                        description="Frameworks and libraries I’m comfortable with"
+                        description="Frameworks and libraries I'm comfortable with"
                         features={["React", "Node.js", "Express", "TailwindCSS", "MUI", "AntDesign", "Shadcn"]}
-                        />
-                        <CardFlip
+                    />
+                    <CardFlip
                         title="Creative Tools"
                         subtitle="What I use most"
-                        description="Tools I’m comfortable with"
+                        description="Tools I'm comfortable with"
                         features={["Photoshop", "Canva", "Figma", "Premiere Pro", "Davinci Resolve"]}
-                        />
-                    
-                    
+                    />
                 </div>
             </div>
         </div>
     )
 }
 
-export default AboutMe  
+export default AboutMe

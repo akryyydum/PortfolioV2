@@ -18,7 +18,7 @@ function Education() {
   ];
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black/50" id="about">
+    <div className="flex justify-center items-center min-h-screen bg-black/50" id="education">
       <div className="flex justify-center items-center gap-12">
         <h2 className="text-7xl font-bold">Education</h2>
 
