@@ -10,7 +10,7 @@ function Experience() {
       titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Where I grew from.. <br />
+              I grew from this.. <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
                 Experiences
               </span>
@@ -20,6 +20,8 @@ function Experience() {
         
 
         <div className="flex flex-col justify-center items-center gap-y-2">
+            
+            <span className="text-3xl font-bold">Experiences</span>
           <div className="flex gap-x-2">
             <GlassMorphCard>
               <div className="flex flex-col gap-2 p-4">
@@ -64,6 +66,31 @@ function Experience() {
                 <span className="text-md">January 2023 - June 2023</span>
               </div>
             </GlassMorphCard>
+          </div>
+          <span className="text-2xl font-bold">Achievements</span>
+          <div className="flex gap-x-2">
+            <GlassMorphCard>
+              <div className="flex flex-col gap-2 p-4">
+                <span className="text-xl font-bold">Oral Presentor</span>
+                <span className="text-lg">IRCITE 2026</span>
+                <span className="text-md">January 2023 - June 2023</span>
+              </div>
+            </GlassMorphCard>
+            <GlassMorphCard>
+              <div className="flex flex-col gap-2 p-4">
+                <span className="text-xl font-bold">4th Place Hack4Gov</span>
+                <span className="text-lg">DICT Region 2</span>
+                <span className="text-md">January 2023 - June 2023</span>
+              </div>
+            </GlassMorphCard>
+            <GlassMorphCard>
+              <div className="flex flex-col gap-2 p-4">
+                <span className="text-xl font-bold">Regional Pitching Competition</span>
+                <span className="text-lg">Philippine Start-up Challenge 9</span>
+                <span className="text-md">January 2023 - June 2023</span>
+              </div>
+            </GlassMorphCard>
+
           </div>
         </div>
       </ContainerScroll>

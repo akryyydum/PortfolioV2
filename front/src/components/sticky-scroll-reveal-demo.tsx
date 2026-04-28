@@ -1,8 +1,11 @@
-import { StickyScroll } from "./ui/sticky-scroll-reveal";
-function Projects() {
-  const content = [
+"use client";
+import React from "react";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+
+
+const content = [
   {
-    title: "TransparaBrgy: Blockchain-based Transparent Barangay Management System For La Torre North",
+    title: "Collaborative Editing",
     description:
       "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
     content: (
@@ -48,15 +51,10 @@ function Projects() {
     ),
   },
 ];
+export default function StickyScrollRevealDemo() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black/50" id="projects">
-        <div>
-            <h2 className="text-7xl font-bold">Projects</h2>
-            
-            <StickyScroll content={content} />
-        </div>
+    <div className="w-full py-4">
+      <StickyScroll content={content} />
     </div>
-  )
+  );
 }
-
-export default Projects
