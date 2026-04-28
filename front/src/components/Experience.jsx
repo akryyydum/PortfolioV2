@@ -17,8 +17,6 @@ function Experience() {
             </h1>
           </>
         }>
-        
-
         <div className="flex flex-col justify-center items-center gap-y-2">
             
             <span className="text-3xl font-bold">Experiences</span>
@@ -73,21 +71,21 @@ function Experience() {
               <div className="flex flex-col gap-2 p-4">
                 <span className="text-xl font-bold">Oral Presentor</span>
                 <span className="text-lg">IRCITE 2026</span>
-                <span className="text-md">January 2023 - June 2023</span>
+                <span className="text-md">March 2026</span>
               </div>
             </GlassMorphCard>
             <GlassMorphCard>
               <div className="flex flex-col gap-2 p-4">
                 <span className="text-xl font-bold">4th Place Hack4Gov</span>
                 <span className="text-lg">DICT Region 2</span>
-                <span className="text-md">January 2023 - June 2023</span>
+                <span className="text-md">October 2025</span>
               </div>
             </GlassMorphCard>
             <GlassMorphCard>
               <div className="flex flex-col gap-2 p-4">
                 <span className="text-xl font-bold">Regional Pitching Competition</span>
                 <span className="text-lg">Philippine Start-up Challenge 9</span>
-                <span className="text-md">January 2023 - June 2023</span>
+                <span className="text-md">October 2024</span>
               </div>
             </GlassMorphCard>
 

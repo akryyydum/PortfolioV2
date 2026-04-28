@@ -40,11 +40,12 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColors = [
-    "#0f172a", // slate-900
-    "#000000", // black
-    "#171717", // neutral-900
-  ];
+ const backgroundColors = [
+  
+  "rgba(0, 0, 0, 0.5)",     // black at 50%
+  "rgba(15, 23, 42, 0.6)",  // slate-900 at 60%
+  "rgba(23, 23, 23, 0.6)",  // neutral-900 at 60%
+];
   const linearGradients = [
     "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
     "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
@@ -67,7 +68,9 @@ export const StickyScroll = ({
       className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
       ref={ref}
     >
+      
       <div className="div relative flex items-start px-4">
+        
         <div className="max-w-2xl">
           {content.map((item, index) => (
             <div key={item.title + index} className="my-20">
@@ -98,6 +101,7 @@ export const StickyScroll = ({
           <div className="h-40" />
         </div>
       </div>
+      
       <div
         style={{ background: backgroundGradient }}
         className={cn(
@@ -105,6 +109,7 @@ export const StickyScroll = ({
           contentClassName,
         )}
       >
+        
         {content[activeCard].content ?? null}
       </div>
     </motion.div>

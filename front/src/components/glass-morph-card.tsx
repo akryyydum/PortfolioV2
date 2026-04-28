@@ -9,8 +9,8 @@ interface GlassMorphCardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const glowColors = {
-  black: "from-gray-900/40 to-black/40",
-  blue: "from-blue-500/40 to-indigo-500/40",
+  black: "from-gray-900/20 to-black/20",
+  blue: "from-blue-500/20 to-indigo-500/20",
 }
 
 const GlassMorphCard = React.forwardRef<HTMLDivElement, GlassMorphCardProps>(
@@ -70,8 +70,8 @@ const GlassMorphCard = React.forwardRef<HTMLDivElement, GlassMorphCardProps>(
           onMouseLeave={handleMouseLeave}
           onMouseEnter={handleMouseEnter}
           className={cn(
-            "relative rounded-2xl border border-white/20",
-            "bg-white/10 backdrop-blur-xl",
+            "relative rounded-2xl border border-white/10",
+            "bg-white/5 backdrop-blur-sm",
             "shadow-[0_8px_32px_rgba(0,0,0,0.37)]",
             "overflow-hidden transition-transform duration-200 ease-out",
             !disabled && "cursor-pointer",
@@ -85,7 +85,7 @@ const GlassMorphCard = React.forwardRef<HTMLDivElement, GlassMorphCardProps>(
           <div
             className="absolute inset-0 pointer-events-none transition-opacity duration-300"
             style={{
-              background: `radial-gradient(circle at ${lightPosition.x}% ${lightPosition.y}%, rgba(255,255,255,0.3) 0%, transparent 50%)`,
+              background: `radial-gradient(circle at ${lightPosition.x}% ${lightPosition.y}%, rgba(255,0,255,0.3) 0%, transparent 50%)`,
               opacity: isHovered ? 1 : 0,
             }}
           />
