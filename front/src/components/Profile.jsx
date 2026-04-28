@@ -1,8 +1,8 @@
-import Lance from '../assets/Lance.png'
+// import Lance from '../assets/Lance.png'
 
 function Profile() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black/50">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black/50" id="home">
         <div className="flex items-center justify-end">
             <div className='flex justify-center items-center w-4xl'>
                 <div className="flex flex-col justify-center w-3xl">
@@ -11,7 +11,7 @@ function Profile() {
                 </div>
                 
             <div className=''>
-                <img src={Lance} alt="Lance" className="w-128 aspect-square rounded-4xl mt-4 object-cover p-4" />
+                {/* <img src={Lance} alt="Lance" className="w-128 aspect-square rounded-4xl mt-4 object-cover p-4" /> */}
             </div>
             </div>
         </div>

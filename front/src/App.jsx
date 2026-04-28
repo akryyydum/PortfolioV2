@@ -3,6 +3,8 @@ import './App.css'
 import Navbar from './components/navbar'
 import PixelBlast from './components/PixelBlast';
 import AboutMe from './components/AboutMe';
+import Education from './components/Education';
+import Experience from './components/Experience';
 function App() {
 
   return (
@@ -39,6 +41,8 @@ function App() {
       </div>
       <Profile />
       <AboutMe />
+      <Education />
+      <Experience />
     </div>
   )
 }
