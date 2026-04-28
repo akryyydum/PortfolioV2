@@ -11,7 +11,7 @@
  */
 
 import { ArrowRight, Repeat2 } from "lucide-react";
-import { useState } from "react";
+import { Children, type ReactNode, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export interface CardFlipProps {
@@ -19,6 +19,12 @@ export interface CardFlipProps {
   subtitle?: string;
   description?: string;
   features?: string[];
+  /** Optional custom content for the front face. Takes priority over children. */
+  front?: ReactNode;
+  /** Optional custom content for the back face. Takes priority over children. */
+  back?: ReactNode;
+  /** If provided, the 1st child becomes the front and the 2nd child becomes the back. */
+  children?: ReactNode;
 }
 
 export default function CardFlip({
@@ -26,8 +32,21 @@ export default function CardFlip({
   subtitle = "Explore the fundamentals",
   description = "Dive deep into the world of modern UI/UX design.",
   features = ["UI/UX", "Modern Design", "Tailwind CSS", "Kokonut UI"],
+  front,
+  back,
+  children,
 }: CardFlipProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const [frontSlot, backSlot] = useMemo((): [ReactNode | null, ReactNode | null] => {
+    if (front !== undefined || back !== undefined) {
+      return [front ?? null, back ?? null];
+    }
+
+    const childArray = Children.toArray(children);
+    if (childArray.length === 0) return [null, null];
+    return [childArray[0] ?? null, childArray[1] ?? null];
+  }, [back, children, front]);
 
   return (
     <div
@@ -58,50 +77,56 @@ export default function CardFlip({
             isFlipped ? "opacity-0" : "opacity-100"
           )}
         >
-          <div className="relative h-full overflow-hidden bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-900 dark:to-black">
-            <div className="absolute inset-0 flex items-start justify-center pt-24">
-              <div className="relative flex h-[100px] w-[200px] items-center justify-center">
-                {[...Array(10)].map((_, i) => (
-                  <div
-                    className={cn(
-                      "absolute h-[50px] w-[50px]",
-                      "rounded-[140px]",
-                      "animate-[scale_3s_linear_infinite]",
-                      "opacity-0",
-                      "shadow-[0_0_50px_rgba(255,165,0,0.5)]",
-                      "group-hover:animate-[scale_2s_linear_infinite]"
-                    )}
-                    key={i}
-                    style={{
-                      animationDelay: `${i * 0.3}s`,
-                    }}
-                  />
-                ))}
+          {frontSlot ? (
+            <div className="h-full w-full">{frontSlot}</div>
+          ) : (
+            <>
+              <div className="relative h-full overflow-hidden bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-900 dark:to-black">
+                <div className="absolute inset-0 flex items-start justify-center pt-24">
+                  <div className="relative flex h-[100px] w-[200px] items-center justify-center">
+                    {[...Array(10)].map((_, i) => (
+                      <div
+                        className={cn(
+                          "absolute h-[50px] w-[50px]",
+                          "rounded-[140px]",
+                          "animate-[scale_3s_linear_infinite]",
+                          "opacity-0",
+                          "shadow-[0_0_50px_rgba(255,165,0,0.5)]",
+                          "group-hover:animate-[scale_2s_linear_infinite]"
+                        )}
+                        key={i}
+                        style={{
+                          animationDelay: `${i * 0.3}s`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div className="absolute right-0 bottom-0 left-0 p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div className="space-y-1.5">
-                <h3 className="font-semibold text-lg text-zinc-900 leading-snug tracking-tighter transition-all duration-500 ease-out-expo group-hover:translate-y-[-4px] dark:text-white">
-                  {title}
-                </h3>
-                <p className="line-clamp-2 text-sm text-zinc-600 tracking-tight transition-all delay-[50ms] duration-500 ease-out-expo group-hover:translate-y-[-4px] dark:text-zinc-200">
-                  {subtitle}
-                </p>
+              <div className="absolute right-0 bottom-0 left-0 p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="space-y-1.5">
+                    <h3 className="font-semibold text-lg text-zinc-900 leading-snug tracking-tighter transition-all duration-500 ease-out-expo group-hover:translate-y-[-4px] dark:text-white">
+                      {title}
+                    </h3>
+                    <p className="line-clamp-2 text-sm text-zinc-600 tracking-tight transition-all delay-[50ms] duration-500 ease-out-expo group-hover:translate-y-[-4px] dark:text-zinc-200">
+                      {subtitle}
+                    </p>
+                  </div>
+                  <div className="group/icon relative">
+                    <div
+                      className={cn(
+                        "absolute inset-[-8px] rounded-lg transition-opacity duration-300",
+                        "bg-gradient-to-br from-orange-500/20 via-orange-500/10 to-transparent"
+                      )}
+                    />
+                    <Repeat2 className="relative z-10 h-4 w-4 text-orange-500 transition-transform duration-300 group-hover/icon:-rotate-12 group-hover/icon:scale-110" />
+                  </div>
+                </div>
               </div>
-              <div className="group/icon relative">
-                <div
-                  className={cn(
-                    "absolute inset-[-8px] rounded-lg transition-opacity duration-300",
-                    "bg-gradient-to-br from-orange-500/20 via-orange-500/10 to-transparent"
-                  )}
-                />
-                <Repeat2 className="relative z-10 h-4 w-4 text-orange-500 transition-transform duration-300 group-hover/icon:-rotate-12 group-hover/icon:scale-110" />
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
 
         {/* Back of card */}
@@ -119,69 +144,44 @@ export default function CardFlip({
             isFlipped ? "opacity-100" : "opacity-0"
           )}
         >
-          <div className="flex-1 space-y-6">
-            <div className="space-y-2">
-              <h3 className="font-semibold text-lg text-zinc-900 leading-snug tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-2px] dark:text-white">
-                {title}
-              </h3>
-              <p className="line-clamp-2 text-sm text-zinc-600 tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-2px] dark:text-zinc-400">
-                {description}
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              {features.map((feature, index) => (
-                <div
-                  className="flex items-center gap-2 text-sm text-zinc-700 transition-all duration-500 dark:text-zinc-300"
-                  key={feature}
-                  style={{
-                    transform: isFlipped
-                      ? "translateX(0)"
-                      : "translateX(-10px)",
-                    opacity: isFlipped ? 1 : 0,
-                    transitionDelay: `${index * 100 + 200}ms`,
-                  }}
-                >
-                  <ArrowRight className="h-3 w-3 text-orange-500" />
-                  <span>{feature}</span>
+          {backSlot ? (
+            <div className="h-full w-full">{backSlot}</div>
+          ) : (
+            <>
+              <div className="flex-1 space-y-2">
+                <div className="space-y-2">
+                  <h3 className="font-semibold text-lg text-zinc-900 leading-snug tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-2px] dark:text-white">
+                    {title}
+                  </h3>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="mt-6 border-zinc-200 border-t pt-6 dark:border-zinc-800">
-            <div
-              className={cn(
-                "group/start relative",
-                "flex items-center justify-between",
-                "-m-3 rounded-xl p-3",
-                "transition-all duration-300",
-                "bg-gradient-to-r from-zinc-100 via-zinc-100 to-zinc-100",
-                "dark:from-zinc-800 dark:via-zinc-800 dark:to-zinc-800",
-                "hover:from-0% hover:from-orange-500/10 hover:via-100% hover:via-orange-500/5 hover:to-100% hover:to-transparent",
-                "dark:hover:from-0% dark:hover:from-orange-500/20 dark:hover:via-100% dark:hover:via-orange-500/10 dark:hover:to-100% dark:hover:to-transparent",
-                "hover:scale-[1.02] hover:cursor-pointer"
-              )}
-            >
-              <span className="font-medium text-sm text-zinc-900 transition-colors duration-300 group-hover/start:text-orange-600 dark:text-white dark:group-hover/start:text-orange-400">
-                Start today
-              </span>
-              <div className="group/icon relative">
-                <div
-                  className={cn(
-                    "absolute inset-[-6px] rounded-lg transition-all duration-300",
-                    "bg-gradient-to-br from-orange-500/20 via-orange-500/10 to-transparent",
-                    "scale-90 opacity-0 group-hover/start:scale-100 group-hover/start:opacity-100"
-                  )}
-                />
-                <ArrowRight className="relative z-10 h-4 w-4 text-orange-500 transition-all duration-300 group-hover/start:translate-x-0.5 group-hover/start:scale-110" />
+                <div className="space-y-2">
+                  {features.map((feature, index) => (
+                    <div
+                      className="flex items-center gap-2 text-sm text-zinc-700 transition-all duration-500 dark:text-zinc-300"
+                      key={feature}
+                      style={{
+                        transform: isFlipped
+                          ? "translateX(0)"
+                          : "translateX(-10px)",
+                        opacity: isFlipped ? 1 : 0,
+                        transitionDelay: `${index * 100 + 200}ms`,
+                      }}
+                    >
+                      <ArrowRight className="h-3 w-3 text-orange-500" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
+
+              
+            </>
+          )}
         </div>
       </div>
 
-      <style jsx>{`
+        <style>{`
                 @keyframes scale {
                     0% {
                         transform: scale(2);
