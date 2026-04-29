@@ -91,9 +91,9 @@ function Profile() {
             style={{ transformStyle: 'preserve-3d' }}>
 
             <img
-              src={Lance}
+              src="https://res.cloudinary.com/dzlwcbxs0/image/upload/v1777469773/20260320_182844_oapwgx.jpg"
               alt="Lance"
-              className="w-72 lg:w-80 aspect-square object-cover"
+              className="w-72 lg:w-100 aspect-square object-cover"
             />
 
             {/* Glare overlay */}
