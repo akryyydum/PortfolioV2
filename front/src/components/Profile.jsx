@@ -26,7 +26,7 @@ function Profile() {
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-black/50" id="home">
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden" id="home">
 
       {/* Background decorative blobs */}
       <div className="absolute inset-0 pointer-events-none">

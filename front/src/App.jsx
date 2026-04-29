@@ -6,6 +6,7 @@ import AboutMe from './components/AboutMe';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Contact from './components/Contacts';
 function App() {
 
   return (
@@ -40,11 +41,15 @@ function App() {
       className='flex justify-center items-center'>
         <Navbar />
       </div>
+      <div className='flex flex-col bg-black/50'>
+        
       <Profile />
       <AboutMe />
       <Education />
       <Experience />
       <Projects />
+      <Contact />
+      </div>
     </div>
   )
 }

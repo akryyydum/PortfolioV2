@@ -45,7 +45,7 @@ const cards = [
 
 function AboutMe() {
   return (
-    <div className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black/50" id="about">
+    <div className="relative flex justify-center items-center min-h-screen overflow-hidden" id="about">
 
       {/* Background — consistent with Profile & Education */}
       <div className="absolute inset-0 pointer-events-none">

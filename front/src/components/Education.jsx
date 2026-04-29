@@ -98,7 +98,7 @@ function Education() {
   ];
 
   return (
-    <div className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black/50" id="education">
+    <div className="relative flex justify-center items-center min-h-screen overflow-hidden" id="education">
 
       {/* Background — matches Profile.jsx */}
       <div className="absolute inset-0 pointer-events-none">
