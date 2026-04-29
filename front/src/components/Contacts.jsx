@@ -46,8 +46,8 @@ const contactLinks = [
   {
     id: "twitter",
     label: "Twitter / X",
-    value: "@akryyydum",
-    href: "https://twitter.com/akryyydum",
+    value: "@lanschristiannn",
+    href: "https://twitter.com/lanschristiannn",
     accent: "#ec4899",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
