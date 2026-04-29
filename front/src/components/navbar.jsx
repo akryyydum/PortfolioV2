@@ -34,7 +34,8 @@ const ContactIcon = () => (
 function Navbar() {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
-  const isClickScrolling = useRef(false); // 👈 lock flag
+  const [scrolled, setScrolled] = useState(false);
+  const isClickScrolling = useRef(false);
 
   const links = [
     { id: "home",       label: "Home",        Icon: HomeIcon },
@@ -47,7 +48,10 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isClickScrolling.current) return; // 👈 ignore scroll during lock
+      // Shrink navbar slightly after scrolling past 20px
+      setScrolled(window.scrollY > 20);
+
+      if (isClickScrolling.current) return;
 
       const scrollPos = window.scrollY + 100;
       for (let i = links.length - 1; i >= 0; i--) {
@@ -63,20 +67,50 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close menu on outside click
+  const navRef = useRef(null);
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (menuOpen && navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [menuOpen]);
+
+  // Close menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleClick = (id) => {
     setActive(id);
     setMenuOpen(false);
-    isClickScrolling.current = true; // 👈 engage lock
+    isClickScrolling.current = true;
     setTimeout(() => {
-      isClickScrolling.current = false; // 👈 release after scroll settles
+      isClickScrolling.current = false;
     }, 800);
   };
 
   return (
-    <nav className="bg-white/10 backdrop-blur-sm border border-white/15 p-4 w-full max-w-7xl rounded-3xl mt-4 mx-auto">
+    <nav
+      ref={navRef}
+      className={`bg-white/10 backdrop-blur-sm border border-white/15 w-full max-w-7xl rounded-3xl mx-auto transition-all duration-300
+        ${scrolled ? "mt-2 px-3 py-2" : "mt-4 p-4"}
+      `}
+    >
       <div className="flex items-center justify-between">
-        <div className="text-white text-lg font-bold">Lance's Portfolio</div>
+        {/* Logo — truncates gracefully on very small screens */}
+        <div className="text-white font-bold truncate max-w-[140px] sm:max-w-none text-base sm:text-lg">
+          Lance's Portfolio
+        </div>
 
+        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-1">
           {links.map(({ id, label, Icon }) => (
             <a
@@ -98,32 +132,51 @@ function Navbar() {
           ))}
         </div>
 
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2 rounded-xl hover:bg-white/10 transition"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-        </button>
+        {/* Mobile right side: active section label + hamburger */}
+        <div className="flex md:hidden items-center gap-2">
+          {/* Shows which section is active so user has context when menu is closed */}
+          <span className="text-xs text-white/50 capitalize">
+            {links.find((l) => l.id === active)?.label}
+          </span>
+
+          <button
+            className="flex flex-col gap-1.5 p-2 rounded-xl hover:bg-white/10 transition touch-manipulation"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          </button>
+        </div>
       </div>
 
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-96 mt-3" : "max-h-0"}`}>
+      {/* Mobile dropdown */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? "max-h-96 mt-3" : "max-h-0"}`}
+        aria-hidden={!menuOpen}
+      >
         <div className="flex flex-col gap-1 border-t border-white/10 pt-3">
           {links.map(({ id, label, Icon }) => (
             <a
               key={id}
               href={`#${id}`}
               onClick={() => handleClick(id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
+              // Larger touch target (py-3) for easier tapping on mobile
+              className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200
                 ${active === id
                   ? "text-white bg-white/20"
                   : "text-gray-300 hover:text-white hover:bg-white/10"
                 }`}
             >
-              <Icon />
+              <span className={`${active === id ? "text-white" : "text-white/50"}`}>
+                <Icon />
+              </span>
               {label}
+              {active === id && (
+                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-white/70" />
+              )}
             </a>
           ))}
         </div>
