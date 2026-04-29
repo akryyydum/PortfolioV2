@@ -652,9 +652,7 @@ export default function Contact() {
             }}
           >
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(16,185,129,1)", animation: "pulse-dot 2s ease-in-out infinite" }} />
-            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: "rgba(255,255,255,0.22)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-              drag to rotate · scroll to reveal
-            </span>
+           
           </div>
         </div>
       </section>
