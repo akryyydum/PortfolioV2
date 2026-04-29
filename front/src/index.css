@@ -8,7 +8,8 @@ html {
   font-family: 'Poppins', sans-serif;
   color: #fff;
   scroll-behavior: smooth;
-
+  overflow-x: hidden;
+  width: 100%;
 }
 
 @theme inline {
@@ -133,7 +134,10 @@ html {
   }
   body {
     @apply bg-background text-foreground;
-
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
   }
   html {
     @apply font-sans;
