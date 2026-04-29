@@ -169,9 +169,6 @@ const PosterGallery = () => {
   );
 };
 
-/* ─────────────────────────────────────────────
-   Main Projects component
-───────────────────────────────────────────── */
 function Projects() {
   const [activeTab, setActiveTab] = useState("dev");
 
@@ -201,13 +198,13 @@ function Projects() {
       ),
     },
     {
-      title: "Adaptive Smart Dashboard",
+      title: "PhilAI: AI-Powered Filipino Chatbot for Understanding the Laws of the Philippines",
       description:
-        "A unified command center that surfaces what matters most. Intelligent widgets reorganize themselves based on your workflow, giving you instant access to metrics, tasks, and team activity without the noise.",
+        "An AI assistant fine-tuned on Philippine legal texts, designed to provide accessible explanations of laws and regulations in Filipino. It bridges the gap between complex legal language and everyday understanding.",
       content: (
         <GlassCard
           gradient="linear-gradient(135deg, rgba(236,72,153,0.6) 0%, rgba(99,102,241,0.5) 100%)"
-          label="Dashboard"
+          label="AI/ML"
           icon="✦"
         />
       ),
@@ -222,7 +219,6 @@ function Projects() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
 
         .glass-scroll-wrapper {
           background: rgba(255,255,255,0.04);
@@ -238,7 +234,6 @@ function Projects() {
         }
 
         .projects-heading {
-          font-family: 'DM Serif Display', serif;
           font-size: clamp(2rem, 5vw, 3.5rem);
           color: rgba(255,255,255,0.95);
           letter-spacing: -0.02em;
@@ -246,7 +241,6 @@ function Projects() {
         }
 
         .projects-subheading {
-          font-family: 'DM Mono', monospace;
           font-size: 0.7rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
@@ -352,7 +346,7 @@ function Projects() {
           {/* Heading */}
           <div className="mb-10 sm:mb-14 flex flex-col gap-3">
             <span className="projects-subheading">// Selected work</span>
-            <h2 className="projects-heading">Featured <em>Projects</em></h2>
+            <h2 className="projects-heading font-bold">Featured <em>Projects</em></h2>
             <div className="flex items-center gap-3 mt-1">
               <div className="h-px w-12 bg-gradient-to-r from-indigo-500 to-transparent" />
               <div className="text-xs text-white/30" style={{ fontFamily: "'DM Mono', monospace" }}>
