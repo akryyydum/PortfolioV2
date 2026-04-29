@@ -21,23 +21,20 @@ export const StickyScroll = ({
     // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
     // target: ref
     container: ref,
-    offset: ["start start", "end start"],
   });
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    const closestBreakpointIndex = cardsBreakpoints.reduce(
-      (acc, breakpoint, index) => {
-        const distance = Math.abs(latest - breakpoint);
-        if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-          return index;
-        }
-        return acc;
-      },
-      0,
-    );
-    setActiveCard(closestBreakpointIndex);
+    if (cardLength <= 1) {
+      setActiveCard(0);
+      return;
+    }
+
+    // Map scroll progress [0..1] into equal card segments.
+    // This ensures the final card can become active near the end.
+    const rawIndex = Math.floor(latest * cardLength);
+    const nextIndex = Math.min(cardLength - 1, Math.max(0, rawIndex));
+    setActiveCard(nextIndex);
   });
 
  const backgroundColors = [
@@ -45,11 +42,13 @@ export const StickyScroll = ({
   "rgba(0, 0, 0, 0.5)",     // black at 50%
   "rgba(15, 23, 42, 0.6)",  // slate-900 at 60%
   "rgba(23, 23, 23, 0.6)",  // neutral-900 at 60%
+  "rgba(28, 25, 23, 0.6)",  // amber-900 at 60%
 ];
   const linearGradients = [
     "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
     "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
     "linear-gradient(to bottom right, #f97316, #eab308)", // orange-500 to yellow-500
+    "linear-gradient(to bottom right, #f59e0b, #fbbf24)", // amber-500 to amber-300
   ];
 
   const [backgroundGradient, setBackgroundGradient] = useState(
@@ -92,7 +91,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-kg mt-10 max-w-sm text-slate-300"
+                className="text-lg mt-10 max-w-sm text-slate-300"
               >
                 {item.description}
               </motion.p>

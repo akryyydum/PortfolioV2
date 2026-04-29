@@ -43,7 +43,7 @@ const devData = [
       "A civic-tech solution built for La Torre North — enabling real-time document tracking, tamper-proof records, and community transparency through distributed ledger technology. Every transaction leaves an immutable trail.",
     longDescription:
       "TransparaBrgy modernizes local government unit (LGU) operations by leveraging blockchain to ensure all barangay transactions are publicly verifiable and tamper-proof. Citizens can track document requests in real-time, officials can manage budgets transparently, and every action is permanently recorded on-chain.",
-    stack: ["Next.js", "Solidity", "Hardhat", "Ethereum", "Tailwind CSS", "Node.js", "MongoDB"],
+    stack: ["React.js", "Express", "MongoDB", "Hyperledger Fabric", "MUI", "Node.js", "MongoDB"],
     role: "Full-Stack Developer & Blockchain Engineer",
     status: "Completed",
     year: "2026",
@@ -62,7 +62,7 @@ const devData = [
       "A full-stack e-commerce replica with live inventory management, cart persistence, and payment flow — mirroring a real-world retail platform at scale.",
     longDescription:
       "A pixel-faithful replica of the National Book Store e-commerce experience, rebuilt from the ground up with a modern stack. Features include live inventory sync via WebSockets, persistent cart sessions, Stripe-based payment simulation, and an admin dashboard for stock management.",
-    stack: ["React", "Express.js", "MySQL", "Stripe API", "WebSockets", "Tailwind CSS", "Docker"],
+    stack: ["React.js", "Express", "MongoDB", "antd", "Node.js", "MongoDB"],
     role: "Full-Stack Developer",
     status: "Completed",
     year: "2025",
@@ -81,8 +81,8 @@ const devData = [
       "An AI assistant fine-tuned on Philippine legal texts, designed to provide accessible explanations of laws and regulations in Filipino.",
     longDescription:
       "PhilAI bridges the gap between complex Philippine legal language and everyday Filipinos. The chatbot is fine-tuned on the Revised Penal Code, Labor Code, Family Code, and other key statutes — responding in natural Filipino (Tagalog). It includes citation tracking so users can verify the exact law being referenced.",
-    stack: ["Python", "FastAPI", "OpenAI API", "LangChain", "React", "Tailwind CSS", "Supabase"],
-    role: "AI/ML Engineer & Frontend Developer",
+    stack: ["React.js", "Express", "MongoDB", "Gemini API", "TailwindCSS", "Node.js", "MongoDB"],
+    role: "AI & Frontend Developer",
     status: "In Progress",
     year: "2026",
     url: null,
@@ -92,6 +92,26 @@ const devData = [
     label: "AI/ML",
     icon: "✦",
   },
+  {
+    id: 4,
+    title: "AetherTech",
+    subtitle: "A tech e-commerce website",
+    description:
+      "An e-commerce website built with microservices architecture to demonstrate distributed systems patterns.",
+    longDescription:
+      "AetherTech is a comprehensive e-commerce platform built to explore microservices architecture within the MERN Stack. The project integrates Docker for containerization and RabbitMQ for asynchronous message passing between services, showcasing real-world patterns for scalable backend systems.",
+    stack: ["MongoDB", "Express.js", "React", "Node.js", "Docker", "RabbitMQ", "Microservices"],
+    role: "Back-End Developer",
+    status: "Completed",
+    year: "2025",
+    url: null,
+    gradient: "linear-gradient(135deg, rgba(245,158,11,0.6) 0%, rgba(249,115,22,0.5) 100%)",
+    accent: "rgba(245,158,11,1)",
+    accentHex: "#f59e0b",
+    label: "E-Commerce",
+    icon: "💻",
+  },
+  
 ];
 
 /* ─────────────────────────────────────────────
