@@ -106,9 +106,7 @@ function Navbar() {
     >
       <div className="flex items-center justify-between">
         {/* Logo — truncates gracefully on very small screens */}
-        <div className="text-white font-bold truncate max-w-[140px] sm:max-w-none text-base sm:text-lg">
-          Lance's Portfolio
-        </div>
+        <img src="/light.png" alt="Logo" className="h-8 w-auto" />
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-1">
